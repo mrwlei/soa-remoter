@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:soa="http://www.soa.com/schema/soa"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	   http://www.soa.com/schema/soa
+	   http://www.soa.com/schema/soa.xsd"
+       default-lazy-init="true">
+
+	<soa:registry  protocol="redis" address="127.0.0.1:6379"></soa:registry>
+
+	<soa:reference id="testService" protocol="netty" interface="com.soa.consumer.service.TestService" loadbalance="roundrob" cluster="failover" retries="3"></soa:reference>
+
+ 	
+</beans>
