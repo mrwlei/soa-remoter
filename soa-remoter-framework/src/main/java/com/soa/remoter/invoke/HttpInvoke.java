@@ -15,12 +15,16 @@ public class HttpInvoke implements Invoke {
     
     public String invoke(Invocation invocation) throws Exception {
         try {
-            List<String> registryInfo = invocation.getReference().getRegistryInfo();
-            //负载均衡算法
-            String loadbalance = invocation.getReference().getLoadbalance();
             Reference reference = invocation.getReference();
+
+            // 注册信息
+            List<String> registryInfo = reference.getRegistryInfo();
+
+            //负载均衡算法
+            String loadbalance = reference.getLoadbalance();
             LoadBalance loadbalanceBean = reference.getLoadBalances().get(loadbalance);
-            
+
+            // 选择服务节点
             NodeInfo nodeinfo = loadbalanceBean.doSelect(registryInfo);
             
             //调用远程的生产者是传输的json字符串

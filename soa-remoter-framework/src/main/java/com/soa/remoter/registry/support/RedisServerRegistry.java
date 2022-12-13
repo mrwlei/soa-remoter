@@ -13,7 +13,8 @@ public class RedisServerRegistry extends JedisPubSub {
      */
     @Override
     public void onMessage(String channel, String message) {
-        
+        // 改变Reference.registryInfo 消费者保存的服务端信息
+
     }
     
     @Override

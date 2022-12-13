@@ -42,12 +42,13 @@ public class DispatcherServlet extends HttpServlet {
             
             //spring的上下文
             ApplicationContext application = Service.getApplication();
+
             //服务层的实例
             Object serviceBean = application.getBean(serviceId);
             
             //这个方法的获取，要考虑到这个方法的重载
             Method method = getMethod(serviceBean, methodName, paramTypes);
-            
+
             if (method != null) {
                 Object result;
                 
